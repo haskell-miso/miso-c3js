@@ -4,7 +4,7 @@
 This project demonstrates an integration between [miso](https://github.com/dmjio/miso) and the [c3.js](https://www.c3js.org/) library. See [live](https://c3js.haskell-miso.org).
 
 <a href="https://c3js.haskell-miso.org">
-  <img width="1006" height="347" alt="image" src="https://github.com/user-attachments/assets/7edaafea-078e-4334-be72-73fe099ad1cd" />
+  <img width="907" height="504" alt="image" src="https://github.com/user-attachments/assets/fea7df20-f636-436e-a214-9dea5c5d2236" />
 </a>
 
 ######
