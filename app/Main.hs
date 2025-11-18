@@ -82,7 +82,11 @@ viewModel _ = H.div_
         [ P.class_ "chart-header" ]
         [ H.h1_
             [ P.class_ "chart-title", CSS.style_ [ CSS.fontFamily "monospace" ] ]
-            ["🍜 📈 miso-c3.js "]
+            [ "🍜 📈 "
+            , H.a_
+                [ P.href_ "https://github.com/haskell-miso/miso-c3js" ]
+                [ " miso-c3.js " ]
+            ]
         , H.p_
             [ P.class_ "chart-subtitle" ]
             ["Revenue overview for the current fiscal year"]
@@ -94,6 +98,6 @@ viewModel _ = H.div_
       []
     , H.div_
         [ P.class_ "chart-footer"]
-        ["Data updated: December 2024"]
+        ["Data updated: December 2026"]
     ]
 -----------------------------------------------------------------------------
