@@ -70,19 +70,19 @@ githubStar = H.iframe_
     , P.width_ "170"
     , textProp "scrolling" "0"
     , textProp "frameborder" "0"
-    , P.src_
-      "https://ghbtns.com/github-btn.html?user=haskell-miso&repo=miso-c3js&type=star&count=true&size=large"
+    , P.src_ "https://ghbtns.com/github-btn.html?user=haskell-miso&repo=miso-c3js&type=star&count=true&size=large"
     ]
     []
 -----------------------------------------------------------------------------
 viewModel :: Model -> View Model Action
 viewModel _ = H.div_
     [ P.class_ "chart-container" ]
-    [ H.div_
+    [ githubStar
+    , H.div_
         [ P.class_ "chart-header" ]
         [ H.h1_
             [ P.class_ "chart-title", CSS.style_ [ CSS.fontFamily "monospace" ] ]
-            ["🍜 📈 miso-c3js "]
+            ["🍜 📈 miso-c3.js "]
         , H.p_
             [ P.class_ "chart-subtitle" ]
             ["Revenue overview for the current fiscal year"]
