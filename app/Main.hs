@@ -12,14 +12,6 @@ import qualified Miso.Html as H
 import qualified Miso.Html.Property as P
 import qualified Miso.CSS as CSS
 -----------------------------------------------------------------------------
-import           Language.Javascript.JSaddle
------------------------------------------------------------------------------
-#ifdef WASM
-import qualified Language.Javascript.JSaddle.Wasm.TH as JSaddle.Wasm.TH
-#else
-import           Data.FileEmbed (embedStringFile)
-#endif
------------------------------------------------------------------------------
 type Model = ()
 -----------------------------------------------------------------------------
 data Action = InitChart DOMRef
@@ -31,9 +23,7 @@ foreign export javascript "hs_start" main :: IO ()
 main :: IO ()
 main = run $ do
 #ifdef WASM
-  _ <- $(JSaddle.Wasm.TH.evalFile "js/c3.js")
-#else
-  _ <- eval ($(embedStringFile "js/c3.js") :: MisoString)
+  $(evalFile "js/c3.js")
 #endif
   startApp app
 -----------------------------------------------------------------------------
