@@ -9,6 +9,7 @@ module Main where
 -----------------------------------------------------------------------------
 import           Miso
 import qualified Miso.Html as H
+import           Miso.FFI.QQ (js)
 import qualified Miso.Html.Property as P
 import qualified Miso.CSS as CSS
 -----------------------------------------------------------------------------
@@ -21,7 +22,7 @@ foreign export javascript "hs_start" main :: IO ()
 #endif
 -----------------------------------------------------------------------------
 main :: IO ()
-main = run $ do
+main = do
 #ifdef WASM
   $(evalFile "js/c3.js")
 #endif
@@ -47,11 +48,11 @@ updateModel = \case
   InitChart domRef ->
     io_ $ do
       _ <- global # ("initChart" :: MisoString) $ [domRef]
-      eval ("""
+      [js|
         setTimeout(function() {
             chart.focus(['Product A']);
         }, 1000);
-      """ :: MisoString)
+      |]
 -----------------------------------------------------------------------------
 githubStar :: View parent action
 githubStar = H.iframe_
