@@ -42,7 +42,7 @@ app = (component () updateModel viewModel)
   }
 #endif
 -----------------------------------------------------------------------------
-updateModel :: Action -> Transition Model Action
+updateModel :: Action -> Effect parent Model Action
 updateModel = \case
   InitChart domRef ->
     io_ $ do
