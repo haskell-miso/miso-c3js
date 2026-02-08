@@ -27,7 +27,7 @@ main = do
 #ifdef WASM
   $(evalFile "js/c3.js")
 #endif
-  startApp app
+  startApp defaultEvents app
 -----------------------------------------------------------------------------
 app :: App Model Action
 app = (component () updateModel viewModel)
