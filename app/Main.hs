@@ -1,6 +1,7 @@
 -----------------------------------------------------------------------------
 {-# LANGUAGE CPP               #-}
 {-# LANGUAGE LambdaCase        #-}
+{-# LANGUAGE QuasiQuotes       #-}
 {-# LANGUAGE TemplateHaskell   #-}
 {-# LANGUAGE MultilineStrings  #-}
 {-# LANGUAGE OverloadedStrings #-}
@@ -8,6 +9,7 @@
 module Main where
 -----------------------------------------------------------------------------
 import           Miso
+import           Miso.FFI.QQ (js)
 import qualified Miso.Html as H
 import qualified Miso.Html.Property as P
 import qualified Miso.CSS as CSS
@@ -21,7 +23,7 @@ foreign export javascript "hs_start" main :: IO ()
 #endif
 -----------------------------------------------------------------------------
 main :: IO ()
-main = run $ do
+main = do
 #ifdef WASM
   $(evalFile "js/c3.js")
 #endif
@@ -44,14 +46,13 @@ app = (component () updateModel viewModel)
 -----------------------------------------------------------------------------
 updateModel :: Action -> Effect parent Model Action
 updateModel = \case
-  InitChart domRef ->
-    io_ $ do
-      _ <- global # ("initChart" :: MisoString) $ [domRef]
-      eval ("""
-        setTimeout(function() {
-            chart.focus(['Product A']);
-        }, 1000);
-      """ :: MisoString)
+  InitChart domRef -> io_
+    [js| 
+      initChart (${domRef});
+      setTimeout(function() {
+        chart.focus(['Product A']);
+      }, 1000);
+     |]
 -----------------------------------------------------------------------------
 githubStar :: View parent action
 githubStar = H.iframe_
